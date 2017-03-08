@@ -7,10 +7,11 @@ class ProductsController < ApplicationController
   end
 
   def create
+    @categories = Categorie.all
     @product = Product.new product_params
     if @product.save
       flash[:success] = t "created_product"
-      redirect_to new_product_path
+      redirect_to test_path
     else
      render :new
     end
@@ -19,6 +20,6 @@ class ProductsController < ApplicationController
   private
 
   def product_params
-    params.require(:product).permit :name, :info, :price, :categrie_id, :picture
+    params.require(:product).permit :name, :info, :price, :image, :categorie_id
   end
 end

@@ -42,3 +42,5 @@ en:
   picture_than_5MB: "should be less than 5MB"
   view:
     product: "Chose categorie"
+  create_new_product: "Create New Product"
+  created_product: "Created product."

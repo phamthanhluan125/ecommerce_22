@@ -1,5 +1,5 @@
 @import "bootstrap-sprockets";
-
+@import "bootstrap";
 .menu_icon {
   width: 25px;
   fill: #30a5ff;
@@ -21,4 +21,11 @@
     color: white;
     text-decoration: none;
   }
+}
+img {
+  width: 100%;
+  height: auto;
+}
+.upload-preview {
+  text-align: center;
 }
