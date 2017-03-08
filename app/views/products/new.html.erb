@@ -5,7 +5,7 @@
     <%= form_for @product, html: {multipart: true} do |f| %>
       <%= render "shared/error_messages", object: f.object %>
       <%= f.label :name, t("name") %>
-      <%= f.text_field :name, class: "form-control" %>
+      <%= f.text_field :name, class: "form-control abc" %>
 
       <%= f.label :info, t("info") %>
       <%= f.text_field :info, class: "form-control" %>
@@ -14,17 +14,25 @@
       <%= f.number_field :price, class: "form-control" %>
 
       <div class="form-group">
-        <%= f.label :categorie_id %>
+        <div id= "show_image"><%=%></div>
+        <%= f.label :categorie_id, t("categories") %>
         <%= f.select :categorie_id,
           @categories.collect {|a| [ a.name, a.id ]},
           {prompt: t("view.product")},
           class: "form-control" %>
       </div>
       <span class="picture">
-        <%= f.file_field :picture %>
+        <%= f.file_field :image, accept: "image/jpeg,image/gif,image/png" %>
       </span>
       <br>
       <%= f.submit t("create_new_product"), class: "btn btn-primary" %>
     <% end %>
   </div>
+  <dir class="col-md-3 .col-md-offset-2 ">
+    <div class="upload-preview">
+    <%= t "image_product" %>
+    <div class="panel panel_image"></div>
+      <%= image_tag "no_image.jpg"%>
+    </div>
+  </dir>
 </div>
