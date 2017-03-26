@@ -17,6 +17,18 @@ class ProductsController < ApplicationController
     end
   end
 
+  def index
+    @categ = Categorie.all
+    cate_def = Categorie.new
+    cate_def.id = 0
+    cate_def.name = "all_categorie"
+    @all_product = Product.all
+  end
+
+  def testx
+
+  end
+
   private
 
   def product_params

@@ -1,0 +1,59 @@
+.menu_icon {
+  width: 25px;
+  fill: #30a5ff;
+}
+.header_icon {
+  width: 25px;
+  fill: white;
+}
+.general_icon {
+  width: 50px;
+  fill: white;
+}
+.function_icon {
+  margin-left: 8px;
+}
+.div_function {
+  position: relative;
+  overflow: hidden;
+  height: 25px;
+  white-space: nowrap;
+
+}
+#logo {
+  float: left;
+  margin-right: 10px;
+  font-size: 1.7em;
+  color: white;
+  text-transform: uppercase;
+  letter-spacing: -1px;
+  padding-top: 9px;
+  font-weight: bold;
+  &:hover {
+    color: white;
+    text-decoration: none;
+  }
+}
+img {
+  width: 100%;
+  height: auto;
+}
+.upload-preview {
+  text-align: center;
+}
+.person {
+  padding-top: 0;
+}
+.admin_dropdown_setting {
+  width: 320px;
+  left: 486px;
+  right: auto;
+  top: 141px;
+}
+.row {
+    margin-left: 0;
+    margin-right: 0;
+}
+.line_pear {
+  background: gainsboro;
+}

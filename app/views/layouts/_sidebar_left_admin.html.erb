@@ -1,50 +1,44 @@
-<div id="sidebar-collapse" class="col-sm-3 col-lg-2 sidebar collapse in" style="">
+<div id="sidebar-collapse" >
   <form role="search">
     <div class="form-group">
       <input class="form-control" placeholder="Search" type="text">
     </div>
   </form>
   <ul class="nav menu">
-    <li>
+    <li id="id_genaral">
       <%= link_to "#" do %>
-        <%= inline_svg "icon/svg/monitor.svg", class: "menu_icon" %>
-        <%= t "genaral" %>
+      <%= inline_svg "icon/svg/monitor.svg", class: "menu_icon" %>
+      <%= t "genaral" %>
       <% end %>
     </li>
+    <li id="id_product">
+      <%= link_to "#" do %>
+      <%= inline_svg "icon/svg/pie-chart.svg", class: "menu_icon" %>
+      <%= t "manage_products" %>
+      <% end %>
+    </li id="id_user">
     <li>
       <%= link_to "#" do %>
-        <%= inline_svg "icon/svg/pie-chart.svg", class: "menu_icon" %>
-        <%= t "statistic" %>
+      <%= inline_svg "icon/svg/avatar.svg", class: "menu_icon" %>
+      <%= t "manage_users" %>
       <% end %>
     </li>
-    <li>
+    <li id="id_order">
       <%= link_to "#" do %>
-        <%= inline_svg "icon/svg/avatar.svg", class: "menu_icon" %>
-        <%= t "manage_users" %>
+      <%= inline_svg "icon/svg/shopping-bag.svg", class: "menu_icon" %>
+      <%= t "manage_oders" %>
       <% end %>
     </li>
-    <li>
+    <li id="id_categorie">
       <%= link_to "#" do %>
-        <%= inline_svg "icon/svg/shopping-bag.svg", class: "menu_icon" %>
-        <%= t "manage_products" %>
+      <%= inline_svg "icon/svg/copy.svg", class: "menu_icon" %>
+      <%= t "manager_categories" %>
       <% end %>
     </li>
-    <li>
+    <li id="id_request">
       <%= link_to "#" do %>
-        <%= inline_svg "icon/svg/copy.svg", class: "menu_icon" %>
-        <%= t "manager_categories" %>
-      <% end %>
-    </li>
-    <li>
-      <%= link_to "#" do %>
-        <%= inline_svg "icon/svg/shopping-cart.svg", class: "menu_icon" %>
-        <%= t "manage_oders" %>
-      <% end %>
-    </li>
-    <li>
-      <%= link_to "#" do %>
-        <%= inline_svg "icon/svg/chat-2.svg", class: "menu_icon" %>
-        <%= t "manage_requests" %>
+      <%= inline_svg "icon/svg/chat-2.svg", class: "menu_icon" %>
+      <%= t "manage_requests" %>
       <% end %>
     </li>
   </ul>

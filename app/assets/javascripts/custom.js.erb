@@ -1,4 +1,4 @@
-$( document ).ready(function() {
+$(document).ready(function() {
   console.log( "ready!" );
   $('#product_image').bind('change', function() {
     var size_in_megabytes = this.files[0].size/1024/1024;
@@ -20,4 +20,18 @@ $(document).ready(function(){
    };
    reader.readAsDataURL(file);
  });
+});
+
+!function($) {
+  $(document).on("click","ul.nav li.parent > a > span.icon", function(){
+    $(this).find('em:first').toggleClass("glyphicon-minus");
+  });
+  $(".sidebar span.icon").find('em:first').addClass("glyphicon-plus");
+}(window.jQuery);
+
+$(window).on('resize', function () {
+  if ($(window).width() > 768) $('#sidebar-collapse').collapse('show')
+});
+$(window).on('resize', function () {
+  if ($(window).width() <= 767) $('#sidebar-collapse').collapse('hide')
 });

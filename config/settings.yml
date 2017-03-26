@@ -8,3 +8,4 @@ maximum_price: 10000000000
 minimum_price: 0
 maximum_quatity: 100000
 minimum_quatily: 1
+maximum_update_image: 5

@@ -18,7 +18,7 @@ class Product < ApplicationRecord
   private
 
   def image_size
-    if image.size > 5.megabytes
+    if image.size > Settings.maximum_update_image.megabytes
       errors.add(:image, "picture_than_5MB")
     end
   end
