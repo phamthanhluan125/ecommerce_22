@@ -16,6 +16,10 @@
               <%= f.file_field :image, accept: "image/jpeg,image/gif,image/png",
                 class: "change_picture" %>
             </span>
+            <div class="form-group">
+              <%= f.label :parent_id, t("parent") %>
+              <%= f.select :parent_id, @list, {}, class: "form-control" %>
+            </div>
             <br>
             <%= f.submit t("edit_categorie"), class: "btn btn-custom btn-success" %>
           <% end %>

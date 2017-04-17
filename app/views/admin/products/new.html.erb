@@ -25,9 +25,8 @@
 
             <div class="form-group">
               <%= f.label :categorie_id, t("categories") %>
-              <%= f.select :categorie_id,
-                @categories.collect {|a| [ a.name, a.id ]},
-                {prompt: t("view.product")}, class: "form-control" %>
+              <%= f.select :categorie_id, @list, {include_blank: t("choose_categorie")},
+                class: "form-control" %>
             </div>
             <div class="form-group">
               <%= f.label :status, t("status") %>

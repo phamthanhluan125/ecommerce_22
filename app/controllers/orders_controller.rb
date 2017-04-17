@@ -1,5 +1,4 @@
 class OrdersController < ApplicationController
-
   before_action :function_logged_in_use, only: [:index, :show]
 
   def update

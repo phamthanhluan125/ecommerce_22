@@ -4,18 +4,18 @@ class Admin::ProductsController < ApplicationController
   before_action :load_product, only: [:destroy, :update]
 
   def new
-    @categories = Categorie.all
+    @list = tree_categorie Categorie.all, 0, [], ""
     @product = Product.new
   end
 
   def create
-    @categories = Categorie.all
     @product = Product.new product_params
     if @product.save
       flash[:success] = t "created_product"
       redirect_to new_admin_product_path
     else
-     render :new
+      @list = tree_categorie Categorie.all, 0, [], ""
+      render :new
     end
   end
 
@@ -34,7 +34,7 @@ class Admin::ProductsController < ApplicationController
   end
 
   def index
-    @categories = Categorie.all
+    @list = tree_categorie Categorie.all, 0, [], ""
     @products = Product.paginate page: params[:page],
       per_page: Settings.maximum_per_page
   end
@@ -81,5 +81,15 @@ class Admin::ProductsController < ApplicationController
 
   def product_params
     params.require(:product).permit :name, :info, :price, :status, :image, :categorie_id
+  end
+
+  def tree_categorie categories, parent, list, title
+    categories.each do |cate|
+      if cate.parent_id == parent
+        list.push([title + "" + cate.name, cate.id])
+        list = tree_categorie categories, cate.id, list, title + "--"
+      end
+    end
+    return list
   end
 end
