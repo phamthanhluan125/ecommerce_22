@@ -1,4 +1,4 @@
-class Admin::OrdersController < ApplicationController
+class Admin::OrdersController < AdminController
   layout "admin_layout"
   before_action :check_admin
 

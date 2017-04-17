@@ -139,3 +139,5 @@ en:
   count_email_register: "Product have %{number} user regiter for email when product available."
   mess_product: "Product that you are subscribing to has returned. Please visit the website to purchase this product."
   rate_title: "Rate"
+  chooseparent: "Choose Parent"
+  chooseparent_error: "The parent category can not be itself or its children."

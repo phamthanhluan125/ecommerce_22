@@ -1,4 +1,4 @@
-class Admin::AdminsController < ApplicationController
+class Admin::AdminsController < AdminController
   layout "admin_layout"
   before_action :check_admin
 

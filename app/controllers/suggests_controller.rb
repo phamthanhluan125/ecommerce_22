@@ -3,7 +3,11 @@ class SuggestsController < ApplicationController
   before_action :load_categories, only:[:index, :new]
   def index
     @suggests = Suggest.paginate page: params[:page],
+<<<<<<< HEAD
       per_page: Settings.maximum_per_page
+=======
+        per_page: Settings.maximum_per_page
+>>>>>>> multi
   end
 
   def create

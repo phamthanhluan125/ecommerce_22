@@ -17,22 +17,21 @@ ul {
   padding: 10px 0;
 }
 .section_products .catalog .catalog_list {
-  background-color: #f1f6f8;
-  border-right: 1px solid #dddddd;
-  border-bottom: 1px solid #dddddd;
   padding: 0;
 }
 .section_products .catalog .catalog_list .catalog_item {
   font-size: 14px;
+  margin-bottom: 10px;
+  background-color: #84c52c;
+  border-radius: 15px;
 }
 .section_products .catalog .catalog_list .catalog_item .link_catalog {
   padding: 12px 40px 13px 27px;
   display: block;
   vertical-align: middle;
   font-size: 14px;
-  color: #464646;
+  color: white;
   font-family: Arial;
-  border-bottom: 1px dashed #c2c2c2;
   position: relative;
   white-space: nowrap;
   text-overflow: ellipsis;

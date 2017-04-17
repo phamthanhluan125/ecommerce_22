@@ -1,0 +1,11 @@
+<br>
+<br>
+<br>
+<%= @list %>
+<%= form_for [:admin ,@product], html: {multipart: true} do |f| %>
+  <div class="form-group">
+    <%= f.label :status, t("status") %>
+    <%= f.select :status, @list ,
+    {prompt: t("view.product")}, class: "form-control" %>
+  </div>
+<% end %>

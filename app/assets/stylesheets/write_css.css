@@ -236,6 +236,54 @@ img {
 #num_star {
   color: #84c52c;
   font-weight: bold;
+  text-align: center;
+  color: orange;
+}
+.status_show_sell {
+  font-weight: bold;
+  color: #84c52c;
+}
+.status_show_presell {
+  font-weight: bold;
+  color: orange;
+}
+.status_show_nosell {
+  font-weight: bold;
+  color: red;
+}
+.btn_new_suggest {
+  float: right;
+  display: block;
+  margin-top: -5px;
+}
+.glyphicon-star {
+  color: #84c52c;
+}
+.glyphicon-star-empty {
+  color: orange;
+}
+.starrr {
+  width: 110px;
+  float: left;
+}
+#num_star {
+  color: #84c52c;
+  font-weight: bold;
+}
+.star_show{
+  width: 100%;
+}
+.icon_rate {
+  color: #84c52c;
+}
+.categorie_item_image {
+  height: 46px;
+  width: 50px;
+  object-fit: cover;
+  float: left;
+  display: block;
+  border-radius: 15px;
+  border: dashed 1px orange;
 }
 .star_show{
   width: 100%;

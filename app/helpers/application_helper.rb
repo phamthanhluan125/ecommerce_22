@@ -12,6 +12,21 @@ module ApplicationHelper
     session[:cart].size
   end
 
+  def load_multi_menu categories, categorie_id, html
+    categories.each do |cate|
+      if cate.parent_id == categorie_id
+        if categories.detect {|n| n.parent_id == cate.id}
+          html += '<li class="dropdown-submenu">' + link_to(cate.name, category_path(cate.id)) + '<ul class="catalog_item dropdown-menu">'
+          html = load_multi_menu categories, cate.id, html
+          html += '</ul></li>'
+        else
+          html += '<li>' + link_to(cate.name, category_path(cate.id)) + '</li>'
+        end
+      end
+    end
+    return html
+  end
+
   def check_status_product product
     case
     when product.selling?

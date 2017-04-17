@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
 
-  mount Ckeditor::Engine => '/ckeditor'
+  mount Ckeditor::Engine => "/ckeditor"
   scope "(:locale)", :locale => /en|vi/ do
     root "static_pages#index"
     get "/login", to: "sessions#new"

@@ -1,3 +1,26 @@
-<li class="catalog_item">
-  <%= link_to "#{categorie.name}", category_path(categorie.id), class: "link_catalog" %>
-</li>
+<% @categories.each do |categorie| %>
+  <% if categorie.parent_id == 0 %>
+    <% if @categories.detect {|c| c.parent_id == categorie.id} %>
+      <li class="catalog_item dropdown-submenu">
+        <% if categorie.image.present? %>
+          <%= image_tag categorie.image, class: "categorie_item_image" %>
+        <% else %>
+          <%= image_tag t("no_image"), class: "categorie_item_image" %>
+        <% end %>
+        <%= link_to "#{categorie.name}", category_path(categorie.id), class: "link_catalog" %>
+        <ul class="catalog_item dropdown-menu">
+         <%= raw load_multi_menu(@categories, categorie.id, "") %>
+        </ul>
+      </li>
+    <% else %>
+      <li class="catalog_item">
+        <% if categorie.image.present? %>
+          <%= image_tag categorie.image, class: "categorie_item_image" %>
+        <% else %>
+          <%= image_tag t("no_image"), class: "categorie_item_image" %>
+        <% end %>
+        <%= link_to "#{categorie.name}", category_path(categorie.id), class: "link_catalog" %>
+      </li>
+    <% end %>
+  <% end %>
+<% end %>
