@@ -90,3 +90,11 @@
     </div>
   </div>
 </div>
+<div id="label_chart" data-chart="<%= @label_chart %>"></div>
+<div id="data_chart" data-chart="<%= @data_chart1 %>" ></div>
+<%= javascript_include_tag "chart/chart" %>
+<%= javascript_include_tag "chart/highcharts" %>
+<%= javascript_include_tag "chart/exporting" %>
+
+
+<div id="container" style="min-width: 310px; height: 400px; margin: 0 auto"></div>
