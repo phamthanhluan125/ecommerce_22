@@ -26,6 +26,7 @@ Rails.application.routes.draw do
     resources :order_details
     resources :payments
     resources :notification_emails, only:[:create, :new]
+    resources :notification_messages, only: [:create, :update]
 
     namespace :admin do
       resources :orders

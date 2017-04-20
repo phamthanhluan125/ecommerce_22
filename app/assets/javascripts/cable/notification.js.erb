@@ -1,0 +1,10 @@
+App.notification = App.cable.subscriptions.create({
+  channel: 'NotificationChannel' }, {
+    received: function(data) {
+      alert(data);
+      console.log("acb");
+    },
+    speak: function(data) {
+      this.perform('speak', data);
+    }
+  });

@@ -39,20 +39,32 @@
           <% end %>
         </li>
         <% if loged? %>
-        <li class="dropdown" id="loged" data-id="true">
-          <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+        <li class="dropdown">
+          <a class="dropbtn" href="#">
+            <span class="glyphicon glyphicon-bell"></span>
+            <span class="product-count" id="count_cart" >
+              <%= @count_notify_noread %>
+            </span>
+            <%= t "Notify" %>
+          </a>
+          <div class="dropdown-content noti">
+            <%= render partial: "layouts/notification_message_item",
+              collection: @notification_messages, as: :message %>
+          </div>
+        </li>
+        <li class="dropdown" >
+          <a class="dropbtn" href="#">
             <span class="glyphicon glyphicon-cog"></span>
             <%= t "profile" %>
-            <span class="caret"></span>
           </a>
-          <ul class="dropdown-menu">
+          <div class="dropdown-content">
             <% if admin? %>
-            <li><%= link_to t("admin_panel"), admin_admins_path %></li>
+              <%= link_to t("admin_panel"), admin_admins_path %>
             <% end %>
-            <li><%= link_to t("profile"), user_path(current_user) %></li>
-            <li><%= link_to t("manange_order"), orders_path %></li>
-            <li><%= link_to t("log_out"), logout_path %></li>
-          </ul>
+              <%= link_to t("profile"), user_path(current_user) %>
+              <%= link_to t("manange_order"), orders_path %>
+              <%= link_to t("log_out"), logout_path %>
+          </div>
         </li>
         <% else %>
         <li id="loged" data-id="false">

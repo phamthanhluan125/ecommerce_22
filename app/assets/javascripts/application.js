@@ -15,3 +15,4 @@
 //= require bootstrap
 //= require_tree ./custom
 //= require ckeditor/init
+//= require cable.js

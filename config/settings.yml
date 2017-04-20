@@ -17,3 +17,7 @@ delivery_day: 2
 end_status_order: 5
 end_status_suggest: 2
 maximum_suggest: 9000
+day7_chart: 6
+day10_chart: 9
+day30_chart: 29
+maximum_notify_message: 10

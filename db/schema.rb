@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170413043725) do
+ActiveRecord::Schema.define(version: 20170420072330) do
 
   create_table "carts", force: :cascade do |t|
     t.integer  "quantity",   default: 1
@@ -25,10 +25,10 @@ ActiveRecord::Schema.define(version: 20170413043725) do
 
   create_table "categories", force: :cascade do |t|
     t.string   "name"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at",             null: false
+    t.datetime "updated_at",             null: false
     t.string   "image"
-    t.integer  "parent_id",   default: 0
+    t.integer  "parent_id",  default: 0
   end
 
   create_table "ckeditor_assets", force: :cascade do |t|
@@ -75,6 +75,16 @@ ActiveRecord::Schema.define(version: 20170413043725) do
     t.index ["user_id"], name: "index_notification_emails_on_user_id"
   end
 
+  create_table "notification_messages", force: :cascade do |t|
+    t.string   "content"
+    t.string   "url",        default: "#"
+    t.integer  "status",     default: 0
+    t.integer  "user_id"
+    t.datetime "created_at",               null: false
+    t.datetime "updated_at",               null: false
+    t.index ["user_id"], name: "index_notification_messages_on_user_id"
+  end
+
   create_table "order_details", force: :cascade do |t|
     t.integer  "price"
     t.integer  "quantity"
@@ -105,8 +115,8 @@ ActiveRecord::Schema.define(version: 20170413043725) do
     t.integer  "price"
     t.string   "image",        default: "products/product.pnj"
     t.integer  "categorie_id"
-    t.datetime "created_at",                                    null: false
-    t.datetime "updated_at",                                    null: false
+    t.datetime "created_at",               null: false
+    t.datetime "updated_at",               null: false
     t.integer  "status",       default: 0
     t.index ["categorie_id"], name: "index_products_on_categorie_id"
   end

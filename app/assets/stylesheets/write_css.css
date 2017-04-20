@@ -285,8 +285,51 @@ img {
   border-radius: 15px;
   border: dashed 1px orange;
 }
-.star_show{
-  width: 100%;
+/*dropdown notification*/
+.dropbtn {
+
 }
-.icon_rate {
-  color: #84c52c;
+.dropdown {
+  position: relative;
+  display: inline-block;
+}
+.dropdown-content {
+  min-width: 150px;
+  display: none;
+  right: 0;
+  position: absolute;
+  background-color: #f9f9f9;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  z-index: 1;
+}
+
+.dropdown-content a {
+  color: black;
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+}
+.dropdown-content a:hover {background-color: #84c52c}
+.dropdown:hover .dropdown-content {
+  display: block;
+}
+.text_notification {
+  white-space: nowrap;
+}
+.notification_time {
+  float: right;
+  font-style: italic;
+  font-size: 13px;
+}
+.noti_item {
+  padding-top: 5px !important;
+  height: 50px;
+  border: dashed 1px #84c52c;
+  border-radius: 20px;
+  background-color: rgba(255, 165, 0, 0.6);
+  margin-bottom: 5px;
+}
+.noti {
+  background-color: rgba(255,255,255,.15);
+  box-shadow: none;
+}

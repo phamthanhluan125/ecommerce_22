@@ -231,3 +231,23 @@ $(document).ready(function(){
       $('.btn_delete_order_detail_admin').attr('disabled','disabled');
   });
 });
+$(document).ready(function(){
+  $('.noti_item').click(function(){
+    var noti_id = $(this).find('.text_notification').data('id');
+    var status = $(this).find('.text_notification').data('status');
+    if(status == 0){
+      alert("yes");
+      $.ajax({
+        type: 'PUT',
+        url: '/notification_messages/' + noti_id,
+        dataType: 'json',
+        context: this,
+        data: {
+          notification_messages: {
+            noti_id: noti_id,
+          }
+        }
+      });
+    }
+  });
+});

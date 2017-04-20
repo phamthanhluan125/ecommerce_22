@@ -1,0 +1,12 @@
+<%= link_to message.url, class: "noti_item" do %>
+  <div class="text_notification" data-id="<%= message.id %>"
+    data-status="<%= message.status %>">
+    <%= message.content %>
+  </div>
+  <% if message.status != 0 %>
+    <span class="glyphicon glyphicon-eye-open"></span>
+  <% else %>
+    <span class="glyphicon glyphicon-eye-close"></span>
+  <% end %>
+  <span class="notification_time"><%= (time_ago_in_words message.created_at) %></span>
+<% end %>

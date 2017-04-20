@@ -1,7 +1,7 @@
 class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
   before_action :create_cart
-
+  before_action :load_notification_message
   include SessionsHelper
 
   before_filter :set_locale
@@ -34,6 +34,17 @@ class ApplicationController < ActionController::Base
 
   def load_categories
     @categories = Categorie.all
+  end
+
+  def load_notification_message
+    if loged?
+      notification_messages_noread = NotificationMessage.notification_of_user(current_user.id,
+        Settings.maximum_notify_message)
+      notification_messages_readed = NotificationMessage.notification_of_user_readed(current_user.id,
+        (Settings.maximum_notify_message - notification_messages_noread.count))
+      @notification_messages = notification_messages_noread + notification_messages_readed
+      @count_notify_noread = notification_messages_noread.count
+    end
   end
 
   private
