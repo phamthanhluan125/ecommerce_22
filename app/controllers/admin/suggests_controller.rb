@@ -12,6 +12,13 @@ class Admin::SuggestsController < ApplicationController
     if @suggest
       @suggest.status = Suggest.statuses[@suggest.status] + 1
       if @suggest.save
+        notification = NotificationMessage.new
+        notification.user_id = @suggest.user_id
+        notification.content = t("noti.suggest", id: @suggest.id, status: @suggest.status)
+        notification.url = suggests_path
+        if notification.save
+          NotificationJob.perform_now notification
+        end
         flash[:success] = t "update_status_success"
       else
         flash[:danger] = t "update_status_fail"

@@ -1,10 +1,205 @@
 App.notification = App.cable.subscriptions.create({
-  channel: 'NotificationChannel' }, {
+  channel: 'NotificationChannel'}, {
     received: function(data) {
-      alert(data);
-      console.log("acb");
+      $.notiny({ text: data.noti.content,
+      image: 'https://image.ibb.co/f8HgFk/Untitled_1.jpg' });
+      if(data.noti.status == 0)
+        var html = '<a class="noti_item" href="' +
+          data.noti.url + '"><div class="text_notification" data-id="' +
+          data.noti.id + '" data-status="0">' +
+          data.noti.content + '</div><span class="glyphicon glyphicon-eye-close">' +
+          '</span><span class="notification_time">less than a minute</span></a>'
+          + $('.noti').html();
+      else
+        var html = '<a class="noti_item" href="' +
+          data.noti.url + '"><div class="text_notification" data-id="' +
+          data.noti.id + '" data-status="0">' +
+          data.noti.content + '</div><span class="glyphicon glyphicon-eye-open">' +
+          '</span><span class="notification_time">less than a minute</span></a>'
+          +  $('.noti').html();
+      $('.noti').html(html);
+      var count = $('#count_notify').html();
+      if(count != '9+'){
+        if (count === '9') {
+          $('#count_notify').html('9+');
+        }
+        else
+        $('#count_notify').html(parseInt(count)+1);
+      }
     },
     speak: function(data) {
       this.perform('speak', data);
     }
+});
+
+// window.onload = function(e) {
+//    $.notiny({ text: 'data.noti.content',
+//       image: 'https://image.ibb.co/f8HgFk/Untitled_1.jpg' });
+// };
+
+$(function() {
+  var $notiny, appendToContainer, closeAction, containers, createNotification, defaults, detectCSSFeature, prepareNotification, showAction, themedefaults;
+  $notiny = $('<div class="notiny" />').appendTo($('body'));
+  defaults = {
+    image: void 0,
+    position: 'right-bottom',
+    theme: 'dark',
+    template: '<div class="notiny-base"><img class="notiny-img" /><div class="notiny-text"></div></div>',
+    width: '300',
+    text: '',
+    background: true,
+    autohide: true,
+    clickhide: true,
+    delay: 5000,
+    animate: true,
+    animation_show: 'notiny-animation-show 0.4s forwards',
+    animation_hide: 'notiny-animation-hide 0.5s forwards'
+  };
+  themedefaults = {
+    container_class: '',
+    notification_class: '',
+    image_class: '',
+    text_class: ''
+  };
+  containers = {
+    'left-top': $('<div />', {
+      "class": 'notiny-container',
+      css: {
+        top: 10,
+        left: 10
+      }
+    }).appendTo($notiny),
+    'right-bottom': $('<div />', {
+      "class": 'notiny-container',
+      css: {
+        bottom: 30,
+        right: 10
+      }
+    }).appendTo($notiny)
+  };
+  detectCSSFeature = function(featurename) {
+    var domPrefixes, elm, feature, featurenameCapital, i;
+    feature = false;
+    domPrefixes = 'Webkit Moz ms O'.split(' ');
+    elm = document.createElement('div');
+    featurenameCapital = null;
+    featurename = featurename.toLowerCase();
+    if (elm.style[featurename] !== void 0) {
+      feature = true;
+    }
+    if (feature === false) {
+      featurenameCapital = featurename.charAt(0).toUpperCase() + featurename.substr(1);
+      i = 0;
+      while (i < domPrefixes.length) {
+        if (elm.style[domPrefixes[i] + featurenameCapital] !== void 0) {
+          feature = true;
+          break;
+        }
+        i++;
+      }
+    }
+    return feature;
+  };
+  closeAction = function($notification, settings) {
+    if (settings.animate) {
+      if (!settings._state_closing) {
+        settings._state_closing = true;
+        if (detectCSSFeature('animation') && detectCSSFeature('transform')) {
+          $notification.css('animation', settings.animation_hide);
+          setTimeout((function() {
+            $notification.remove();
+          }), 550);
+        } else {
+          $notification.fadeOut(400, function() {
+            $notification.remove();
+          });
+        }
+      }
+    } else {
+      $notification.remove();
+    }
+  };
+  showAction = function($notification, settings) {
+    if (settings.animate) {
+      if (detectCSSFeature('animation') && detectCSSFeature('transform')) {
+        $notification.css('animation', settings.animation_show);
+      } else {
+        $notification.hide();
+        $notification.fadeIn(500);
+      }
+    }
+  };
+  prepareNotification = function(options) {
+    createNotification($.extend({}, defaults, options));
+  };
+  createNotification = function(settings) {
+    var $img, $notification, $ptext;
+    $notification = $(settings.template);
+    settings.theme = $.notiny.themes[settings.theme];
+    $notification.addClass(settings.theme.notification_class);
+    $ptext = $notification.find('.notiny-text');
+    $ptext.addClass(settings.theme.text_class);
+    $ptext.html(settings.text);
+    $img = $notification.find('.notiny-img');
+    if (settings.image !== void 0) {
+      $notification.addClass('notiny-with-img');
+      $img.css('display', 'block');
+      $img.addClass(settings.theme.image_class);
+      $img.attr('src', settings.image);
+    } else {
+      $img.hide();
+      $notification.addClass('notiny-without-img');
+    }
+    if (settings.position.indexOf('fluid') === -1) {
+      $notification.css('width', settings.width);
+    }
+    $notification.data('settings', settings);
+    appendToContainer($notification, settings);
+    return $notification;
+  };
+  appendToContainer = function($notification, settings) {
+    var $container, floatclear;
+    $container = containers[settings.position];
+    $container.addClass(settings.theme.container_class);
+    if (settings.position.slice(-3) === 'top') {
+      $container.prepend($notification);
+    } else {
+      $container.append($notification);
+    }
+    floatclear = settings.position.split('-')[0];
+    $notification.css('float', floatclear);
+    $notification.css('clear', floatclear);
+    settings._state_closing = false;
+    if (settings.clickhide) {
+      $notification.css('cursor', 'pointer');
+      $notification.on('click', function() {
+        closeAction($notification, settings);
+        return false;
+      });
+    }
+    if (settings.autohide) {
+      setTimeout((function() {
+        closeAction($notification, settings);
+      }), settings.delay + 500);
+    }
+    showAction($notification, settings);
+  };
+  $.notiny = function(options) {
+    prepareNotification(options);
+    return this;
+  };
+  $.notiny.addTheme = function(name, options) {
+    var settings;
+    settings = $.extend({}, themedefaults, options);
+    (this.themes = this.themes || {})[name] = settings;
+  };
+  $.notiny.close = function($notiny) {
+    closeAction($notiny, $notiny.data('settings'));
+  };
+  $.notiny.addTheme('dark', {
+    notification_class: 'notiny-theme-dark notiny-default-vars'
   });
+  $.notiny.addTheme('light', {
+    notification_class: 'notiny-theme-light notiny-default-vars'
+  });
+});

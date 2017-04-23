@@ -22,6 +22,8 @@ class User < ApplicationRecord
   validates :password, presence: true, length: {minimum: Settings.minimum_password}
 
   scope :user_regit_today, -> {where("DATE(created_at) = ?", Date.today)}
+  scope :this_day, ->(date){where "DATE(created_at) = ?" , date}
+  scope :all_admin, ->{where "is_admin = ?", true}
 
   class << self
     def digest string

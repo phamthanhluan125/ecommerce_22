@@ -23,6 +23,13 @@ class Admin::OrdersController < AdminController
       if Order.statuses[order.status] < Settings.end_status_order
         order.status = Order.statuses.key Order.statuses[order.status] + 1
         if order.save
+          notification = NotificationMessage.new
+          notification.user_id = order.user_id
+          notification.content = t("noti.suggest", id: order.id, status: order.status)
+          notification.url = suggests_path
+          if notification.save
+            NotificationJob.perform_now notification
+          end
           flash[:success] = t "update_order_success"
         else
           flash[:danger] = t "update_order_fail"

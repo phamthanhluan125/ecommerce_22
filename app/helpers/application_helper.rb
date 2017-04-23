@@ -12,6 +12,10 @@ module ApplicationHelper
     session[:cart].size
   end
 
+  def count_notify_noread
+    @count_notification_not_send > 9 ? "9+" : @count_notification_not_send
+  end
+
   def load_multi_menu categories, categorie_id, html
     categories.each do |cate|
       if cate.parent_id == categorie_id

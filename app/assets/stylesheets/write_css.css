@@ -309,7 +309,7 @@ img {
   text-decoration: none;
   display: block;
 }
-.dropdown-content a:hover {background-color: #84c52c}
+.dropdown-content a:hover {background-color: orange;}
 .dropdown:hover .dropdown-content {
   display: block;
 }
@@ -322,14 +322,21 @@ img {
   font-size: 13px;
 }
 .noti_item {
-  padding-top: 5px !important;
-  height: 50px;
+  padding-top: 0px !important;
+  height: 40px;
   border: dashed 1px #84c52c;
   border-radius: 20px;
-  background-color: rgba(255, 165, 0, 0.6);
-  margin-bottom: 5px;
+  background-color: #84c52c;
+  margin-bottom: 2px !important;
+  color: white !important;
 }
 .noti {
   background-color: rgba(255,255,255,.15);
   box-shadow: none;
+}
+.icon_general_admin {
+  font-size: 50px;
+  float: left;
+  margin: 15px -15px;
+  color: white;
 }

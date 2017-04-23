@@ -38,12 +38,11 @@ class ApplicationController < ActionController::Base
 
   def load_notification_message
     if loged?
-      notification_messages_noread = NotificationMessage.notification_of_user(current_user.id,
-        Settings.maximum_notify_message)
-      notification_messages_readed = NotificationMessage.notification_of_user_readed(current_user.id,
-        (Settings.maximum_notify_message - notification_messages_noread.count))
-      @notification_messages = notification_messages_noread + notification_messages_readed
-      @count_notify_noread = notification_messages_noread.count
+      notification_messages_not_seen = NotificationMessage.notification_of_user_not_seen(current_user.id)
+      notification_messages_seen = NotificationMessage.notification_of_user_seen(current_user.id,
+        (Settings.maximum_notify_message - notification_messages_not_seen.count))
+      @notification_messages = notification_messages_not_seen+ notification_messages_seen
+      @count_notification_not_send = NotificationMessage.all_notification_not_seen(current_user.id).count
     end
   end
 

@@ -20,4 +20,4 @@ maximum_suggest: 9000
 day7_chart: 6
 day10_chart: 9
 day30_chart: 29
-maximum_notify_message: 10
+maximum_notify_message: 9

@@ -26,9 +26,11 @@ class OrdersController < ApplicationController
             raise t "create_order_fail" unless @orderdetail.save!
           end
         end
+        send_notification @order.id
         OrderUserMailer.order_to_user(current_user, @carts, @order).deliver
         session[:cart].clear
         flash[:success] = t "create_order_success"
+        binding.pry
         redirect_to root_path
       else
         flash[:danger] = t "create_order_fail"
@@ -70,6 +72,26 @@ class OrdersController < ApplicationController
   end
 
   private
+
+  def send_notification order_id
+    admins = User.all_admin
+    admins.each do |a|
+      notification = NotificationMessage.new
+      notification.content = t "noti.new.order"
+      notification.url = admin_order_path order_id
+      notification.user_id = a.id
+      if notification.save
+        NotificationJob.perform_now notification
+      end
+    end
+    notification = NotificationMessage.new
+    notification.content = t("noti.order.created", id: order_id)
+    notification.url = order_path order_id
+    notification.user_id = current_user.id
+    if notification.save
+      NotificationJob.perform_now notification
+    end
+  end
 
   def order_params
     params.require(:order).permit :address, :phone, :note,

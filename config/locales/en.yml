@@ -111,11 +111,10 @@ en:
   mail_thank: "Thank you for trusting and selecting our products."
   mail_top: "We send you the line item details you just placed."
   end_email: "Sended by Fresh-Vegestable."
-  order_id: "FVOID#%{id}"
   please_login_to_continue: "Please login to continue..."
   send_suggest: "Send Suggest"
   thank_suggest: "
-  We have received your request(FVSID#%{id}). We will process and respond as soon as possible."
+  We have received your request(FVSGID#%{id}). We will process and respond as soon as possible."
   product:
     status:
       sell: "Selling"
@@ -146,3 +145,10 @@ en:
   10_day: "10 Day"
   30_day: "30 Day"
   choose_type: "Choose Type"
+  noti:
+    new:
+      order: "You have just received a new order."
+      rate: "You have jush received a new rate."
+      suggest: "You have jush received a new suggest."
+    order: "Your order FVODID#%{id} is %{status}."
+    suggest: "Your suggest FVSGID#%{id} is %{status}."

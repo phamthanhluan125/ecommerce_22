@@ -11,11 +11,11 @@
       <%= link_to t("admin_panel"), admin_admins_path, id:"logo" %>
     </div>
     <ul class="nav navbar-nav navbar-right">
-        <li class="dropdown">
+           <li class="dropdown">
           <a class="dropbtn" href="#">
             <span class="glyphicon glyphicon-bell"></span>
-            <span class="product-count" id="count_cart" >
-              <%= @count_notify_noread %>
+            <span class="product-count" id="count_notify" >
+              <%= count_notify_noread %>
             </span>
             <%= t "Notify" %>
           </a>

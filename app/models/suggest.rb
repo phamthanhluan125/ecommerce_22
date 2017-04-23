@@ -10,6 +10,7 @@ class Suggest < ApplicationRecord
   scope :all_suggest, -> {order("created_at desc")}
   scope :suggest_create_today, -> {where("DATE(created_at) = ?", Date.today)}
   scope :this_day, ->(date){where "DATE(created_at) = ?" , date}
+  scope :suggests_of_user, ->(user_id){where "user_id = ?", user_id}
 
   delegate :name, to: :user
   delegate :email, to: :user
